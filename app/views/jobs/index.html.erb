@@ -1,0 +1,17 @@
+
+<div class="d-flex justify-content-center">
+  <h1>Jobs</h1>
+</div>
+<div class="card">
+  <div class="card-body">
+  <% @jobs.each do |job| %>
+    <div class="row border-bottom pt-2">
+      <div class="d-flex justify-content-between">
+        <h4><%= link_to job.title, job_path(job)  %></h4>
+        <p><%= @categories[job.category - 1] %></p>
+      </div>
+      <p class="fw-light"><%= job.company %> ($<%= job.salary_min %>-<%= job.salary_max %>) </p>
+    </div>
+  <% end %>
+  </div>
+</div>
