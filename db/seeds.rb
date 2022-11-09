@@ -6,8 +6,11 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts 'Cleaning out the DB...'
+JobPost.destroy_all
 
-10.times do
+puts 'Creating seed jobs...'
+20.times do
   salary_1 = (Faker::Number.number(digits: 2)).ceil * 1000
   salary_2 = (Faker::Number.number(digits: 2)).ceil * 1000
 
@@ -19,6 +22,8 @@ require 'faker'
     salary_max = salary_2
   end
 
-  new_job_post = JobPost.new(title: Faker::Job.title, description: Faker::Lorem.paragraph_by_chars, category: rand(1..9), job_url: Faker::Internet.url, salary_min: salary_min, salary_max: salary_max, company:Faker::Company.name)
+  new_job_post = JobPost.new(title: Faker::Job.title, description: Faker::Lorem.paragraph_by_chars, category: rand(1..9), job_url: Faker::Internet.url, salary_min: salary_min, salary_max: salary_max, company:Faker::Company.name, location_city: Faker::Address.city, location_country: Faker::Address.country)
   new_job_post.save
 end
+
+puts "... created #{JobPost.count} jobs."

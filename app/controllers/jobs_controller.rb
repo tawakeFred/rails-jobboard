@@ -15,4 +15,12 @@ class JobsController < ApplicationController
   def show
     @job = JobPost.find(params[:id])
   end
+
+  def scraper
+
+    # job_list_url = "url"
+    # response = URI.open(job_list_url)
+    # json = JSON.parse(response.read)
+    # return json['']
+  end
 end
